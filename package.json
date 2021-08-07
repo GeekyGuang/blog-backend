@@ -1,30 +1,34 @@
 {
-  "name": "node",
+  "name": "bloglist",
   "version": "1.0.0",
-  "description": "",
+  "description": "Blog list application",
   "main": "index.js",
   "scripts": {
-    "build:ui": "rm -rf build && cd ../Full Stack Open 2021/notes && npm run build --prod && cp -r build ../../notes-backend",
-    "deploy": "git push heroku master",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push origin master && npm run deploy",
-    "logs:prod": "heroku logs --tail",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest --verbose"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "lint": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "start:test": "cross-env NODE_ENV=test node index.js"
   },
-  "author": "",
+  "author": "Ananias CARVALHO <carvalhoananias@hotmail.com>",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.13.3"
-  },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "nodemon": "^2.0.12"
+    "eslint": "^6.8.0",
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   },
-  "jest": {
-    "testEnvironment": "node"
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.7",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0"
   }
 }
